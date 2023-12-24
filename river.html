@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lost</title>
+        <style type="text/css">
+
+            body {
+                background-color: #000000;
+            }
+
+            #gameScreen {
+                position: absolute;
+                margin-top: 9.5vw;
+                margin-left: 24vw;
+                filter: grayscale(100%);
+            }
+
+            #paper {
+                position: absolute;
+                margin-left: 30vw;
+                margin-top: 36vw;
+                filter: grayscale(100%);
+            }
+
+            #rock {
+                position: absolute;
+                margin-top: 19.5vw;
+                margin-left: 55vw;
+                filter: grayscale(25%);
+            }
+
+            #rock:hover {
+                animation: shake 0.5s;
+                animation-iteration-count: infinite;
+            }
+
+            @keyframes shake {
+                0% { transform: translate(1px, 1px) rotate(0deg); }
+                10% { transform: translate(-1px, -2px) rotate(-1deg); }
+                20% { transform: translate(-3px, 0px) rotate(1deg); }
+                30% { transform: translate(3px, 2px) rotate(0deg); }
+                40% { transform: translate(1px, -1px) rotate(1deg); }
+                50% { transform: translate(-1px, 2px) rotate(-1deg); }
+                60% { transform: translate(-3px, 1px) rotate(0deg); }
+                70% { transform: translate(3px, 1px) rotate(-1deg); }
+                80% { transform: translate(-1px, -1px) rotate(1deg); }
+                90% { transform: translate(1px, 2px) rotate(0deg); }
+                100% { transform: translate(1px, -2px) rotate(-1deg); }
+            }
+
+            #spider {
+                position: absolute;
+                margin-top: 9vw;
+                margin-left: 57vw;
+                filter: grayscale(25%);
+            }
+
+
+            #upright {
+                position: absolute;
+                margin-top: 7.5vw;
+                margin-left: 65vw;
+            }
+
+            #upleft {
+                position: absolute;
+                margin-top: 7.5vw;
+                margin-left: 23vw;
+            }
+
+            #botright {
+                position: absolute;
+                margin-top: 29vw;
+                margin-left: 65vw;
+            }
+
+            #botleft {
+                position: absolute;
+                margin-top: 29vw;
+                margin-left: 23vw;
+            }
+
+            #up {
+                position: absolute;
+                margin-top: 8vw;
+                margin-left: 45vw;
+            }
+
+            #down {
+                position: absolute;
+                margin-top: 31vw;
+                margin-left: 45vw;
+            }
+
+            #left {
+                position: absolute;
+                margin-top: 18vw;
+                margin-left: 23vw;
+            }
+
+            #right {
+                position: absolute;
+                margin-top: 18vw;
+                margin-left: 65vw;
+            }
+
+            @media screen and (max-width: 1900px) {
+                img {width: 100%; height: auto;}
+            }
+
+            @media screen and (max-width: 1200px) {
+                img {width: 100%; height: auto;}
+                div#gameScreen {margin-left: 0vw;}
+                div#upright {margin-left: 70vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#rock {margin-left: 50vw; margin-top: 26vw; width: 6%; height: auto;}
+                div#botright {margin-left: 70vw; margin-top: 45vw; width: 15%; height: auto;}
+                div#botleft {margin-left: .5vw; margin-top: 45vw; width: 15%; height: auto;}
+                div#down {margin-left: 35vw; margin-top: 47vw; width: 15%; height: auto;}
+                div#up {margin-left: 35vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#right {margin-left: 70vw; margin-top: 24.5vw; width: 15%; height: auto;}
+                div#upleft {margin-left: .5vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#left {margin-left: .5vw; margin-top: 24.5vw; width: 15%; height: auto;}
+                div#paper {margin-left: 15vw; margin-top: 60vw; width: 60%; height: auto;}
+            }
+
+            @media screen and (max-width: 950px) {
+                img {width: 100%; height: auto;}
+                div#gameScreen {margin-left: 0vw;}
+                div#rock {margin-left: 60vw; margin-top: 29.5vw; width: 7%; height: auto;}
+                div#spider {margin-left: 63vw; margin-top: 9vw; width: 7%; height: auto;}
+                div#upright {margin-left: 84vw; margin-top: 7.2vw; width: 14%; height: auto;}
+                div#botright {margin-left: 84vw; margin-top: 50vw; width: 14%; height: auto;}
+                div#botleft {margin-left: .5vw; margin-top: 50vw; width: 14%; height: auto;}
+                div#down {margin-left: 42vw; margin-top: 52vw; width: 14%; height: auto;}
+                div#up {margin-left: 42vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#right {margin-left: 84vw; margin-top: 27.5vw; width: 15%; height: auto;}
+                div#upleft {margin-left: .5vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#left {margin-left: .5vw; margin-top: 27.5vw; width: 15%; height: auto;}
+            }
+            
+        </style>
+        <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+    <div id="gameScreen">
+        <img src="images/RiverRocks.png" alt="Game screen. If you do not see the image please reload page">
+    </div>
+
+    <div id="rock">
+        <img src="images/objects/Rock.png" alt="Shaking Rock">
+    </div>
+
+    <div id="spider">
+        <img src="images/objects/Spider.png" alt="Spider">
+    </div>
+
+    <div id="botleft">
+        <a href="lost.html">
+            <img src="images/arrows/botleftarrow.png" alt="bottom-left route">
+        </a>
+    </div>
+
+    <div id="upleft">
+        <a href="lost.html">
+            <img src="images/arrows/topleftarrow.png" alt="upward-left route">
+        </a>
+    </div>
+
+    <div id="up">
+        <a href="almostOut.html">
+            <img src="images/arrows/forwardarrow.png" alt="upwards route">
+        </a>
+    </div>
+
+    <div id="right">
+        <a href="lost.html">
+            <img src="images/arrows/rightarrow.png" alt="right route">
+        </a>
+    </div>
+
+    <div id="paper">
+        <img src="images/objects/PaperImage.png" alt="Clues">
+    </div>
+
+   
+
+    <script type="text/javascript">
+		$(document).ready(function(){
+
+            //blocking utility of rules portion, try to fix or remove
+
+            $("div[id='upleft']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='right']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='up']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='botleft']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='rock']").animate({"opacity" : 1}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : 1});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id='rock']").click(function(){
+				$("#rock").animate({
+                    right:"+=10",
+                    top:"+=10",
+                    rotate:"-=90deg"
+                }, 50);
+			}
+			);
+
+            $("div[id='spider']").animate({rotate : "+=0deg"}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({rotate : "+=6deg"});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({rotate : "-=6deg"});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id='spider']").click(function(){
+				$("#spider").animate({
+                    right:"+=10",
+                    top:"+=700",
+                    rotate:"-=720deg",
+                    opacity: 0
+                }, 1000);
+			}
+			);
+			
+			//drop drpdown div onto screen
+			$("#rules").animate({
+				top:"+=500"
+			}, 600); //the 2000 in this case dictates the animation lifespan. The +400 is the amount and direction of the animation (in this case it comes from the top and descends)
+			
+			$("#rules").addClass("fixed");
+			
+			//close dropdown div
+			$("#rules").click(function(event){
+				//prevent default functionality
+				event.preventDefault();
+				
+				//move dropdown back off screen
+				$("#rules").css("top", "-500px");
+			}); //end <a> click
+			
+		}); //end ready event
+	</script>
+</body>
+</html>

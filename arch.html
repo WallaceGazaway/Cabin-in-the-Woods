@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lost</title>
+        <style type="text/css">
+
+            body {
+                background-color: #000000;
+            }
+
+            #gameScreen {
+                position: absolute;
+                margin-top: 9.5vw;
+                margin-left: 24vw;
+                filter: grayscale(100%);
+            }
+
+            #paper {
+                position: absolute;
+                margin-left: 30vw;
+                margin-top: 36vw;
+                filter: grayscale(100%);
+            }
+
+            #hidingGuy {
+                position: absolute;
+                margin-top: 25vw;
+                margin-left: 55vw;
+                filter: grayscale(100%);
+            }
+
+            #log {
+                position: absolute;
+                margin-top: 24vw;
+                margin-left: 54.5vw;
+                filter: grayscale(100%);
+            }
+
+            #logColor {
+                position: absolute;
+                margin-top: 24vw;
+                margin-left: 54.5vw;
+            }
+
+            #lowerScreen {
+                position: absolute;
+                margin-top: 9.5vw;
+                margin-left: 24vw;
+                filter: grayscale(100%);
+            }
+
+            #upright {
+                position: absolute;
+                margin-top: 7.5vw;
+                margin-left: 65vw;
+            }
+
+            #upleft {
+                position: absolute;
+                margin-top: 7.5vw;
+                margin-left: 23vw;
+            }
+
+            #botright {
+                position: absolute;
+                margin-top: 29vw;
+                margin-left: 65vw;
+            }
+
+            #botleft {
+                position: absolute;
+                margin-top: 29vw;
+                margin-left: 23vw;
+            }
+
+            #up {
+                position: absolute;
+                margin-top: 8vw;
+                margin-left: 45vw;
+            }
+
+            #down {
+                position: absolute;
+                margin-top: 31vw;
+                margin-left: 45vw;
+            }
+
+            #left {
+                position: absolute;
+                margin-top: 18vw;
+                margin-left: 23vw;
+            }
+
+            #right {
+                position: absolute;
+                margin-top: 18vw;
+                margin-left: 65vw;
+            }
+
+            @media screen and (max-width: 1900px) {
+                img {width: 100%; height: auto;}
+            }
+
+            @media screen and (max-width: 1200px) {
+                img {width: 100%; height: auto;}
+                div#gameScreen {margin-left: 0vw;}
+                div#lowerScreen {margin-left: 0vw;}
+                div#log {margin-left: 53vw; margin-top: 38vw; width: 20%; height: auto;}
+                div#logColor {margin-left: 53vw; margin-top: 38vw; width: 20%; height: auto;}
+                div#hidingGuy {margin-left: 55vw; margin-top: 40vw; width: 15%; height: auto;}
+                div#upright {margin-left: 70vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#botright {margin-left: 70vw; margin-top: 45vw; width: 15%; height: auto;}
+                div#botleft {margin-left: .5vw; margin-top: 45vw; width: 15%; height: auto;}
+                div#down {margin-left: 35vw; margin-top: 47vw; width: 15%; height: auto;}
+                div#up {margin-left: 35vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#right {margin-left: 70vw; margin-top: 24.5vw; width: 15%; height: auto;}
+                div#upleft {margin-left: .5vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#left {margin-left: .5vw; margin-top: 24.5vw; width: 15%; height: auto;}
+                div#paper {margin-left: 15vw; margin-top: 60vw; width: 60%; height: auto;}
+            }
+
+            @media screen and (max-width: 950px) {
+                img {width: 100%; height: auto;}
+                div#gameScreen {margin-left: 0vw;}
+                div#lowerScreen {margin-left: 0vw;}
+                div#log {margin-left: 60vw; margin-top: 38vw; width: 25%; height: auto;}
+                div#logColor {margin-left: 60vw; margin-top: 38vw; width: 25%; height: auto;}
+                div#hidingGuy {margin-left: 62vw; margin-top: 45vw; width: 20%; height: auto;}
+                div#upright {margin-left: 84vw; margin-top: 7.2vw; width: 14%; height: auto;}
+                div#botright {margin-left: 84vw; margin-top: 50vw; width: 14%; height: auto;}
+                div#botleft {margin-left: .5vw; margin-top: 50vw; width: 14%; height: auto;}
+                div#down {margin-left: 42vw; margin-top: 52vw; width: 14%; height: auto;}
+                div#up {margin-left: 42vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#right {margin-left: 84vw; margin-top: 27.5vw; width: 15%; height: auto;}
+                div#upleft {margin-left: .5vw; margin-top: 7.2vw; width: 15%; height: auto;}
+                div#left {margin-left: .5vw; margin-top: 27.5vw; width: 15%; height: auto;}
+            }
+            
+        </style>
+        <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+    <div id="gameScreen">
+        <img src="images/Arch.png" alt="Game screen. If you do not see the image please reload page">
+    </div>
+
+    <div id="hidingGuy">
+        <img src="images/objects/BehindLog.png" alt="Hidden figure showing which way to go">
+    </div>
+
+    <div id="lowerScreen">
+        <img src="images/BottomofArch.png" alt="Lower section of this screen overlapping to hide elements">
+    </div>
+
+    <div id="logColor">
+        <img src="images/Log.png" alt="Log hiding secret">
+    </div>
+
+    <div id="log">
+        <img src="images/Log.png" alt="Log hiding secret">
+    </div>
+
+    <div id="upright">
+        <a href="lost.html">
+            <img src="images/arrows/toprightarrow.png" alt="upper-right back route">
+        </a>
+    </div>
+
+    <div id="botright">
+        <a href="lost.html">
+            <img src="images/arrows/botrightarrow.png" alt="bottom-right route">
+        </a>
+    </div>
+
+    <div id="botleft">
+        <a href="river.html">
+            <img src="images/arrows/botleftarrow.png" alt="bottom-left route">
+        </a>
+    </div>
+
+    <div id="right">
+        <a href="lost.html">
+            <img src="images/arrows/rightarrow.png" alt="right route">
+        </a>
+    </div>
+
+    <div id="left">
+        <a href="lost.html">
+            <img src="images/arrows/leftarrow.png" alt="left route">
+        </a>
+    </div>
+
+    <div id="paper">
+        <img src="images/objects/PaperImage.png" alt="Clues">
+    </div>
+
+   
+
+    <script type="text/javascript">
+		$(document).ready(function(){
+
+            //blocking utility of rules portion, try to fix or remove
+            $("div[id='upright']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='right']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='left']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='botright']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='botleft']").animate({"opacity" : .6}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : .6});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id!='gameScreen']").click(function(){
+				
+			}
+			);
+
+            $("div[id='log']").animate({"opacity" : 1}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 0});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" :1});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id='log']").click(function(){
+				$('#hidingGuy').animate({
+                    bottom:"+=100px"
+                }, 150);
+			}
+			);
+			
+			//drop drpdown div onto screen
+			$("#rules").animate({
+				top:"+=500"
+			}, 600); //the 2000 in this case dictates the animation lifespan. The +400 is the amount and direction of the animation (in this case it comes from the top and descends)
+			
+			$("#rules").addClass("fixed");
+			
+			//close dropdown div
+			$("#rules").click(function(event){
+				//prevent default functionality
+				event.preventDefault();
+				
+				//move dropdown back off screen
+				$("#rules").css("top", "-500px");
+			}); //end <a> click
+			
+		}); //end ready event
+	</script>
+</body>
+</html>

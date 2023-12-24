@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inside Cabin</title>
+        <style type="text/css">
+
+            body {
+                background-color: #000000;
+            }
+
+            #gameScreen {
+                position: absolute;
+                margin-top: 9.5vw;
+                margin-left: 24vw;
+                filter: grayscale(100%);
+            }
+
+            #paper {
+                position: absolute;
+                margin-left: 30vw;
+                margin-top: 36vw;
+                filter: grayscale(100%);
+            }
+
+            #congrats {
+			position: absolute;
+            text-align:center;
+            font-family: Chiller, Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+            font-size: 1.5vw;
+            font-weight: bold;
+			top: -150px;
+			left: 30vw;
+			background-color: #979393;
+			padding: 30px;
+			border: 1px solid black;
+            border-radius: 20px;
+		    }
+		    #congrats.fixed {
+			    position: fixed;
+		    }
+            a {
+                font-size: 2vw;
+                font-weight: bolder;
+            }
+
+            @media screen and (max-width: 1900px) {
+                img {width: 100%; height: auto;}
+            }
+
+            @media screen and (max-width: 1200px) {
+                img {width: 100%; height: auto;}
+                div#gameScreen {margin-left: 0vw;}
+                div#paper {margin-left: 15vw; margin-top: 60vw; width: 60%; height: auto;}
+                div#congrats {font-size: 3vw; margin-right: 27vw; top: -350px;}
+                a {font-size: 4vw;}
+            }
+
+            @media screen and (max-width: 950px) {
+                img {width: 100%; height: auto;}
+                div#gameScreen {margin-left: 0vw;}
+            }
+            
+        </style>
+        <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+    <div id="gameScreen">
+        <img src="images/Exit.png" alt="End of game">
+    </div>
+
+    <div id="paper">
+        <img src="images/objects/PaperImage.png" alt="Clues">
+    </div>
+    
+    <div id="congrats">You've successfully made your way outside of the forest. <br/><br/> But how did you get there in the first place? And will you end up there again?<br/><br/><a href="index.html">Play Again?</a></div>
+
+    <script type="text/javascript">
+		$(document).ready(function(){
+
+            //blocking utility of rules portion, try to fix or remove
+            $("div[id='door']").animate({"opacity" : 0}).hover(function() {
+				//Occurs when cursor is hovering over pic
+				$(this).animate({"opacity" : 1});
+			}, function() {
+				//This happens when not over pic
+				$(this).animate({"opacity" : 0});
+			//Replacing Clicky bit with linking and referencing via javascript in place of html in event run into issues.
+			})//.click(function(){
+				//$("#th3").css("display","none");
+			//}
+			//);
+			$("div[id='door']").click(function(){
+				
+			}
+			);
+
+            
+			
+			//drop drpdown div onto screen
+			$("#congrats").animate({
+				top:"+=500"
+			}, 1200); //the 2000 in this case dictates the animation lifespan. The +400 is the amount and direction of the animation (in this case it comes from the top and descends)
+			
+			$("#congrats").addClass("fixed");
+			
+			//close dropdown div
+			$("#congrats").click(function(event){
+				//prevent default functionality
+				
+				//move dropdown back off screen
+				$("#congrats").css("top", "-500px");
+			}); //end <a> click
+			
+		}); //end ready event
+	</script>
+</body>
+</html>
